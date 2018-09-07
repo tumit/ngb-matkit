@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CoreNgxBootstrapModule } from './core/core-ngx-bootstrap.module';
 import { CoreNgxTranslateModule } from './core/core-ngx-translate.module';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { SharedModule } from './shared/shared.module';
@@ -17,6 +18,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     HttpClientModule,
     CoreNgxTranslateModule.forRoot(),
+    CoreNgxBootstrapModule.forRoot(),
     SharedModule,
     AppRoutingModule
   ],

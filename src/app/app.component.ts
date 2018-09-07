@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
+import { InfoModalComponent } from './shared/components/info-modal/info-modal.component';
 import { Todo, TodoService } from './todo';
 import { User, UserService } from './user';
 
@@ -17,8 +19,12 @@ export class AppComponent implements OnInit {
   users$: Observable<User[]>;
   today: Date;
 
+  // bs-modal
+  bsModalRef: BsModalRef;
+
   constructor(
     public translate: TranslateService,
+    private modalService: BsModalService,
     private todoService: TodoService,
     private userService: UserService) { }
 
@@ -27,5 +33,19 @@ export class AppComponent implements OnInit {
     this.todos$ = this.todoService.list();
     this.users$ = this.userService.list();
     this.today = new Date;
+  }
+
+  openInfoModal() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.bsModalRef = this.modalService.show(InfoModalComponent, { initialState });
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 }

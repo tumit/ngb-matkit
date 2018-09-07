@@ -1,8 +1,24 @@
-<div>{{ 'app_title'| translate:{'title': title} }}</div>
+<h1>{{ 'app_title'| translate:{'title': title} }}</h1>
 <div *ngIf="todos$ | async as todos">todos: {{ todos.length }}</div>
 <div *ngIf="users$ | async as users">users: {{ users.length }}</div>
-<div>today: {{ today | dayjs:'DD/MMMM/YYYY' }}</div>
-<div>today(th_TH): {{ today | dayjs:'DD/MMMM/YYYY':'th_TH' }}</div>
-<div>today(th_XX): {{ today | dayjs:'DD/MMMM/YYYY':'th_XX' }}</div>
-<div>today(en_XX): {{ today | dayjs:'DD/MMMM/YYYY':'en_XX' }}</div>
+<div>
+  today: {{ today | dayjs:'DD/MMMM/YYYY' }}
+</div>
+<div>
+  today(th_TH): {{ today | dayjs:'DD/MMMM/YYYY':'th_TH' }}
+</div>
+<div>
+  today(th_XX): {{ today | dayjs:'DD/MMMM/YYYY':'th_XX' }}
+</div>
+<div>
+  today(en_XX): {{ today | dayjs:'DD/MMMM/YYYY':'en_XX' }}
+</div>
+<div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    (click)="openInfoModal()">
+    Open Modal
+  </button>
+</div>
 <router-outlet></router-outlet>

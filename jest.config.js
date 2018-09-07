@@ -10,4 +10,11 @@ module.exports = {
     '@src/(.*)': '<rootDir>/src/src/$1',
     '@state/(.*)': '<rootDir>/src/app/state/$1',
   },
+  transform: {
+    "^.+\.(ts|html)$": "<rootDir>/node_modules/jest-preset-angular/preprocessor.js",
+    "^.+\.js$": "babel-jest"
+  },
+  transformIgnorePatterns: [
+    '<rootDir>/node_modules/(?!ngx-bootstrap|@progress)'
+  ]
 };

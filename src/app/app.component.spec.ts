@@ -1,13 +1,21 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { AppComponent } from './app.component';
+import { CoreNgxBootstrapModule } from './core/core-ngx-bootstrap.module';
+import { CoreNgxTranslateModule } from './core/core-ngx-translate.module';
+import { SharedModule } from './shared/shared.module';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
+        CoreNgxTranslateModule.forRoot(),
+        CoreNgxBootstrapModule.forRoot(),
+        SharedModule,
       ],
       declarations: [
         AppComponent
