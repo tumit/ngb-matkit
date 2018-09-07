@@ -1,3 +1,4 @@
+<div>{{ 'app_title'| translate:{'title': title} }}</div>
 <div *ngIf="todos$ | async as todos">todos: {{ todos.length }}</div>
 <div *ngIf="users$ | async as users">users: {{ users.length }}</div>
 <div>today: {{ today | dayjs:'DD/MMMM/YYYY' }}</div>

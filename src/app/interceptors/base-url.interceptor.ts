@@ -9,10 +9,12 @@ export class BaseUrlInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const url = environment.apiUrl;
-    req = req.clone({
-      url: url + req.url
-    });
+    if (!req.url.startsWith('./')) {
+      const url = environment.apiUrl;
+      req = req.clone({
+        url: url + req.url
+      });
+    }
 
     return next.handle(req);
   }
