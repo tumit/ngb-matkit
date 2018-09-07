@@ -3,9 +3,10 @@ import { TranslateService } from '@ngx-translate/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
-import { InfoModalComponent } from './shared/components/info-modal/info-modal.component';
+import { InfoModalComponent } from './shared/components';
 import { Todo, TodoService } from './todo';
 import { User, UserService } from './user';
+
 
 @Component({
   selector: 'ngb-root',
