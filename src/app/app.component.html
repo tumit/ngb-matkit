@@ -1,3 +1,7 @@
 <div *ngIf="todos$ | async as todos">todos: {{ todos.length }}</div>
 <div *ngIf="users$ | async as users">users: {{ users.length }}</div>
+<div>today: {{ today | dayjs:'DD/MMMM/YYYY' }}</div>
+<div>today(th_TH): {{ today | dayjs:'DD/MMMM/YYYY':'th_TH' }}</div>
+<div>today(th_XX): {{ today | dayjs:'DD/MMMM/YYYY':'th_XX' }}</div>
+<div>today(en_XX): {{ today | dayjs:'DD/MMMM/YYYY':'en_XX' }}</div>
 <router-outlet></router-outlet>

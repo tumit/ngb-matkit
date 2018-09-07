@@ -1,5 +1,7 @@
 import 'jest-preset-angular';
 
+import * as dayjs from 'dayjs';
+
 /* global mocks for jsdom */
 const mock = () => {
   let storage = {};
@@ -25,6 +27,8 @@ Object.defineProperty(document.body.style, 'transform', {
     };
   },
 });
+
+Object.defineProperty(dayjs, 'extend', { value: () => { } });
 
 /* output shorter and more meaningful Zone error stack traces */
 // Error.stackTraceLimit = 2;
