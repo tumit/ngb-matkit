@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoService, Todo } from './todos/todo.service';
-import { UserService, User } from './users/user.service';
+
+import { UserService, User } from './user';
 import { Observable } from 'rxjs';
+import { Todo, TodoService } from './todo';
 
 @Component({
   selector: 'ngb-root',
@@ -18,7 +19,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.todos$ = this.todoService.list();
     this.users$ = this.userService.list();
-    // this.todo.list().subscribe(todos => this.todos = todos);
-    // this.user.list().subscribe(users => this.users = users);
   }
 }
