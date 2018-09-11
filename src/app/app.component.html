@@ -21,4 +21,9 @@
     Open Modal
   </button>
 </div>
+<div class="col-sm-12">
+  <ng-container *ngIf="users$ | async as users">
+    <ngb-table [headers]="headers" [items]="users"></ngb-table>
+  </ng-container>
+</div>
 <router-outlet></router-outlet>

@@ -9,7 +9,6 @@ import { CoreNgxTranslateModule } from './core/core-ngx-translate.module';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { SharedModule } from './shared/shared.module';
 
-
 @NgModule({
   declarations: [
     AppComponent

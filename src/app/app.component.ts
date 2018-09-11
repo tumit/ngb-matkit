@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   todos$: Observable<Todo[]>;
   users$: Observable<User[]>;
   today: Date;
+  headers: string[];
 
   // bs-modal
   bsModalRef: BsModalRef;
@@ -31,9 +32,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.translate.use('th_TH');
-    this.todos$ = this.todoService.list();
-    this.users$ = this.userService.list();
+    this.todos$ = this.todoService.findAll();
+    this.users$ = this.userService.findAll();
     this.today = new Date;
+    this.headers = ['ID', 'Name', 'Username', 'Email', 'Phone', 'Website'];
   }
 
   openInfoModal() {

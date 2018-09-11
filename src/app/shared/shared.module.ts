@@ -4,15 +4,18 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { DayjsModule } from '../modules/dayjs/dayjs.module';
-import { InfoModalComponent } from './components/info-modal/info-modal.component';
+import { NgbTableModule } from '../modules/ngb-table/ngb-table.module';
+import { InfoModalComponent } from './components';
 
-const MODULES = [CommonModule, DayjsModule, TranslateModule, ModalModule];
+
+const MODULES = [CommonModule, DayjsModule, TranslateModule, ModalModule, NgbTableModule];
 const ENTRY_COMPONENTS = [InfoModalComponent];
+const COMPONENTS = [];
 
 @NgModule({
   imports: [...MODULES],
-  declarations: [...ENTRY_COMPONENTS],
+  declarations: [...COMPONENTS, ...ENTRY_COMPONENTS],
   entryComponents: [...ENTRY_COMPONENTS],
-  exports: [...MODULES]
+  exports: [...MODULES, ...COMPONENTS]
 })
 export class SharedModule { }
