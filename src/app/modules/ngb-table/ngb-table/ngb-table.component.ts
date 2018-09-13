@@ -1,4 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { firstBy } from 'thenby';
+
+export interface Header {
+  field: string;
+  label: string;
+}
+
+export class Order {
+  field: string;
+  opt: opt;
+  constructor(init?: Partial<Order>) {
+    Object.assign(this, init);
+  }
+}
 
 export class Paginate {
   page: number;
@@ -42,10 +56,19 @@ export class Paginate {
 export class NgbTableComponent implements OnInit {
 
   @Input()
-  headers = [];
+  title: string;
 
   @Input()
-  items = [];
+  subtitle: string;
+
+  @Input()
+  headers: Header[];
+
+  @Input()
+  data = [];
+
+  // order
+  order: Order;
 
   // paging
   paginate: Paginate;
@@ -56,20 +79,23 @@ export class NgbTableComponent implements OnInit {
     this.paginate = new Paginate({
       page: 1,
       limit: 3,
-      totalCount: this.items.length
+      totalCount: this.data.length
     });
   }
 
-  onSelectPreviousPage() {
-    this.paginate.previous();
+  orderBy(field: string) {
+    // go to first page
+    this.paginate.page = 1;
+    // setup order option
+    this.order = {
+      field,
+      opt: {
+        direction: (this.order && this.order.field === field)
+          ? this.order.opt.direction * -1
+          : 1
+      }
+    };
+    // sort data
+    this.data.sort(firstBy(this.order.field, this.order.opt));
   }
-
-  onSelectPage(page: number) {
-    this.paginate.page = page;
-  }
-
-  onSelectNextPage() {
-    this.paginate.next();
-  }
-
 }

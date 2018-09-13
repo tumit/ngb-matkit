@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Observable } from 'rxjs';
 
+import { Header } from './modules/ngb-table/ngb-table/ngb-table.component';
 import { InfoModalComponent } from './shared/components';
 import { Todo, TodoService } from './todo';
 import { User, UserService } from './user';
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   todos$: Observable<Todo[]>;
   users$: Observable<User[]>;
   today: Date;
-  headers: string[];
+  headers: Header[];
 
   // bs-modal
   bsModalRef: BsModalRef;
@@ -35,7 +36,14 @@ export class AppComponent implements OnInit {
     this.todos$ = this.todoService.findAll();
     this.users$ = this.userService.findAll();
     this.today = new Date;
-    this.headers = ['ID', 'Name', 'Username', 'Email', 'Phone', 'Website'];
+    this.headers = [
+      { field: 'id', label: 'ID' },
+      { field: 'name', label: 'Name' },
+      { field: 'username', label: 'Username' },
+      { field: 'email', label: 'Email' },
+      { field: 'phone', label: 'Phone' },
+      { field: 'website', label: 'Website' }
+    ] as Header[];
   }
 
   openInfoModal() {

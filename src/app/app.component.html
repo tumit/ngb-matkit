@@ -23,7 +23,11 @@
 </div>
 <div class="col-sm-12">
   <ng-container *ngIf="users$ | async as users">
-    <ngb-table [headers]="headers" [items]="users"></ngb-table>
+    <ngb-table
+      title="ngb-table title"
+      subtitle="this is subtitle"
+      [headers]="headers"
+      [data]="users"></ngb-table>
   </ng-container>
 </div>
 <router-outlet></router-outlet>

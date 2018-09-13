@@ -1,50 +1,51 @@
 <div class="card card-plain">
-  <div class="card-header card-header-primary">
-    <h4 class="card-title mt-0"> Table on Plain Background</h4>
-    <p class="card-category"> Here is a subtitle for this table</p>
+  <div *ngIf="title || subtitle" class="card-header card-header-primary">
+    <h4 *ngIf="title" class="card-title mt-0">{{ title }}</h4>
+    <p *ngIf="subtitle" class="card-category">{{ subtitle }}</p>
   </div>
   <div class="card-body">
     <!-- top pagination: start -->
-    <nav aria-label="...">
+    <nav aria-label="Users">
       <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+        <!-- previous: start -->
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" tabindex="-1" (click)="paginate.previous()">Previous</a>
         </li>
+        <!-- previous: end -->
+
+        <li *ngFor="let page of paginate.pages" class="page-item" [ngClass]="{'active': paginate.page === page}"
+          (click)="this.paginate.page = page">
+          <a class="page-link">{{ page }}</a>
+        </li>
+
+        <!-- next: start -->
+        <li class="page-item">
+          <a class="page-link" (click)="paginate.next()">Next</a>
+        </li>
+        <!-- next: end -->
       </ul>
     </nav>
     <!-- top pagination: end -->
 
-    {{ paginate | json }}
-
-    <!-- items table: start -->
+    <!-- data table: start -->
     <div class="table-responsive">
       <table class="table table-hover">
         <thead class="text-primary">
-          <th *ngFor="let header of headers">{{ header }}</th>
+          <th *ngFor="let header of headers">
+            <span (click)="orderBy(header.field)">{{ header.label }}</span>
+          </th>
         </thead>
         <tbody>
-          <tr *ngFor="let item of items
-            | slice
-              : paginate.begin
-              : paginate.end">
-            <td>{{ item.id }}</td>
-            <td>{{ item.name }}</td>
-            <td>{{ item.username }}</td>
-            <td>{{ item.email }}</td>
-            <td>{{ item.phone }}</td>
-            <td>{{ item.website }}</td>
+          <tr *ngFor="let datum of data
+            | slice:paginate.begin:paginate.end">
+            <td *ngFor="let header of headers">
+              {{ datum[header.field] }}
+            </td>
           </tr>
         </tbody>
       </table>
-      <!-- items table: end -->
+      <!-- data table: end -->
 
       <!-- bottom pagination: start -->
       <nav aria-label="Users">
@@ -52,20 +53,18 @@
 
           <!-- previous: start -->
           <li class="page-item">
-            <a class="page-link" tabindex="-1" (click)="onSelectPreviousPage()">Previous</a>
+            <a class="page-link" tabindex="-1" (click)="paginate.previous()">Previous</a>
           </li>
           <!-- previous: end -->
 
-          <li *ngFor="let page of paginate.pages"
-            class="page-item"
-            [ngClass]="{'active': paginate.page === page}"
-            (click)="onSelectPage(page)">
+          <li *ngFor="let page of paginate.pages" class="page-item" [ngClass]="{'active': paginate.page === page}"
+            (click)="this.paginate.page = page">
             <a class="page-link">{{ page }}</a>
           </li>
 
           <!-- next: start -->
           <li class="page-item">
-            <a class="page-link" (click)="onSelectNextPage()">Next</a>
+            <a class="page-link" (click)="paginate.next()">Next</a>
           </li>
           <!-- next: end -->
         </ul>
