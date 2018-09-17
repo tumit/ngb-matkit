@@ -16,8 +16,9 @@ export class Order {
 }
 
 export class Paginate {
-  page: number;
-  limit: number;
+
+  page = 1;
+  limit = 10;
   totalCount: number;
 
   constructor(init?: Partial<Paginate>) {
@@ -79,11 +80,7 @@ export class NgbTableComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.paginate = new Paginate({
-      page: 1,
-      limit: 3,
-      totalCount: this.data.length
-    });
+    this.paginate = new Paginate({limit: 3, totalCount: this.data.length});
   }
 
   orderBy(field: string) {
