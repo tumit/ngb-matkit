@@ -37,10 +37,14 @@
           </th>
         </thead>
         <tbody>
-          <tr *ngFor="let datum of data
-            | slice:paginate.begin:paginate.end">
-            <td *ngFor="let header of headers">
-              {{ datum[header.field] }}
+          <tr *ngFor="let datum of data | slice:paginate.begin:paginate.end; let i = index;">
+            <td *ngFor="let header of headers" [ngSwitch]="header.field">
+              <ng-container *ngSwitchCase="SEQ">
+                {{ paginate.begin + 1 + i }}
+              </ng-container>
+              <ng-container *ngSwitchDefault>
+                {{ datum[header.field] }}
+              </ng-container>
             </td>
           </tr>
         </tbody>

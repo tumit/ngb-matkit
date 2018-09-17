@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { firstBy } from 'thenby';
 
-export interface Header {
+export class Header {
+  static readonly SEQ = '__SEQ';
   field: string;
   label: string;
 }
@@ -54,6 +55,8 @@ export class Paginate {
   styleUrls: ['./ngb-table.component.css']
 })
 export class NgbTableComponent implements OnInit {
+
+  readonly SEQ = Header.SEQ;
 
   @Input()
   title: string;

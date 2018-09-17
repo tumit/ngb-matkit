@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     this.users$ = this.userService.findAll();
     this.today = new Date;
     this.headers = [
-      { field: 'id', label: 'ID' },
+      { field: Header.SEQ, label: '#' },
       { field: 'name', label: 'Name' },
       { field: 'username', label: 'Username' },
       { field: 'email', label: 'Email' },
