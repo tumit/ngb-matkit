@@ -18,25 +18,25 @@ export class Order {
 export class Paginate {
 
   page = 1;
-  limit = 10;
-  totalCount = 0;
+  itemsPerPage = 3;
+  totalItems = 0;
 
   constructor(init?: Partial<Paginate>) {
     Object.assign(this, init);
   }
 
   get begin() {
-    return (this.page - 1) * this.limit;
+    return (this.page - 1) * this.itemsPerPage;
   }
 
   get end() {
-    return (this.page * this.limit) < this.totalCount
-            ? (this.page * this.limit)
-            : this.totalCount;
+    return (this.page * this.itemsPerPage) < this.totalItems
+            ? (this.page * this.itemsPerPage)
+            : this.totalItems;
   }
 
   get pages() {
-    return Array(Math.ceil(this.totalCount / this.limit)).fill(0).map((_, i) => i + 1);
+    return Array(Math.ceil(this.totalItems / this.itemsPerPage)).fill(0).map((_, i) => i + 1);
   }
 
   previous() {
@@ -77,10 +77,13 @@ export class NgbTableComponent implements OnInit {
   // paging
   paginate: Paginate;
 
+  totalCount = 10;
+  currentPage = 1;
+
   constructor() { }
 
   ngOnInit() {
-    this.paginate = new Paginate({totalCount: this.data.length});
+    this.paginate = new Paginate({totalItems: this.data.length});
   }
 
   orderBy(field: string) {

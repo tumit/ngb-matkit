@@ -5,27 +5,12 @@
   </div>
   <div class="card-body">
     <!-- top pagination: start -->
-    <nav aria-label="Users">
-      <ul class="pagination">
-
-        <!-- previous: start -->
-        <li class="page-item">
-          <a class="page-link" tabindex="-1" (click)="paginate.previous()">Previous</a>
-        </li>
-        <!-- previous: end -->
-
-        <li *ngFor="let page of paginate.pages" class="page-item" [ngClass]="{'active': paginate.page === page}"
-          (click)="this.paginate.page = page">
-          <a class="page-link">{{ page }}</a>
-        </li>
-
-        <!-- next: start -->
-        <li class="page-item">
-          <a class="page-link" (click)="paginate.next()">Next</a>
-        </li>
-        <!-- next: end -->
-      </ul>
-    </nav>
+    <pagination
+      class="pagination justify-content-end"
+      [totalItems]="paginate.totalItems"
+      [itemsPerPage]="paginate.itemsPerPage"
+      [(ngModel)]="paginate.page">
+    </pagination>
     <!-- top pagination: end -->
 
     <!-- data table: start -->
